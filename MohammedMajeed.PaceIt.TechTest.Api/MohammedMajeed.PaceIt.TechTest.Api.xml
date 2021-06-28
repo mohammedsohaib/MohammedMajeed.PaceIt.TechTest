@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MohammedMajeed.PaceIt.TechTest.Api</name>
+    </assembly>
+    <members>
+        <member name="M:MohammedMajeed.PaceIt.TechTest.Api.Controllers.CustomerController.List">
+            <summary>
+            This endpoint lists all the customers available in the database.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
