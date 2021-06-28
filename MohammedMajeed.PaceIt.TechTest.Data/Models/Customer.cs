@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 
+using System.ComponentModel.DataAnnotations;
+
 namespace MohammedMajeed.PaceIt.TechTest.Data
 {
     public class Customer
@@ -10,6 +12,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
         /// <value>
         /// The first name.
         /// </value>
+        [Required]
         [JsonProperty("first_name")]
         public string FirstName { get; set; }
 
@@ -19,6 +22,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
         /// <value>
         /// The last name.
         /// </value>
+        [Required]
         [JsonProperty("last_name")]
         public string LastName { get; set; }
 
@@ -37,6 +41,8 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
         /// <value>
         /// The email.
         /// </value>
+        [Key]
+        [Required]
         [JsonProperty("email")]
         public string Email { get; set; }
     }
