@@ -7,6 +7,16 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
     public class Customer
     {
         /// <summary>
+        /// Gets or sets the customer identifier.
+        /// </summary>
+        /// <value>
+        /// The customer identifier.
+        /// </value>
+        [Key]
+        [JsonProperty("customer_id")]
+        public int CustomerId { get; set; }
+
+        /// <summary>
         /// Gets or sets the first name.
         /// </summary>
         /// <value>
@@ -41,7 +51,6 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
         /// <value>
         /// The email.
         /// </value>
-        [Key]
         [Required]
         [JsonProperty("email")]
         public string Email { get; set; }

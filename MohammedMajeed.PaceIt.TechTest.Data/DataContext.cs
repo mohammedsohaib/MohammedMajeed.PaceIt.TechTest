@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MohammedMajeed.PaceIt.TechTest.Data
 {
@@ -12,7 +13,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
 
         public DbSet<Customer> Customers { get; set; }
 
-        public static void Initialise(IServiceProvider serviceProvider)
+        public static async Task Initialise(IServiceProvider serviceProvider)
         {
             using (var context = new DataContext(serviceProvider.GetRequiredService<DbContextOptions<DataContext>>()))
             {
@@ -57,6 +58,8 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
                         Phone = "01913478555",
                         Email = "steve.mcdonald@corrie.co.uk"
                     });
+
+               await context.SaveChangesAsync();
             };
         }
     }

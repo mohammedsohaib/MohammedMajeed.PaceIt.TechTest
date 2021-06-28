@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class CustomerController : ControllerBase
     {
         private readonly ILogger<CustomerController> _logger;
@@ -59,7 +59,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
                     Email = newCustomerModel.Email
                 });
 
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
 
             var newCustomer = _dataContext.Customers.Single(c => c.Email.ToLowerInvariant() == newCustomerModel.Email.ToLowerInvariant());
 
@@ -84,7 +84,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
         /// </summary>
         /// <param name="email">The customer email email address.</param>
         /// <returns></returns>
-        [HttpGet("{emailAddress}")]
+        [HttpGet]
         [Produces("application/json", Type = typeof(Customer))]
         [ProducesResponseType(typeof(Customer), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(string email)
@@ -115,7 +115,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
         /// <param name="email">The current customer email.</param>
         /// <param name="updateModel">The updated customer model.</param>
         /// <returns></returns>
-        [HttpPut("{emailAddress}")]
+        [HttpPut]
         [Produces("application/json", Type = typeof(Customer))]
         [ProducesResponseType(typeof(Customer), StatusCodes.Status200OK)]
         public async Task<IActionResult> Update(string email, Customer updateModel)
@@ -148,7 +148,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
             customer.Phone = updateModel.Phone;
             customer.Email = updateModel.Email;
 
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
 
             return Ok(customer);
         }
@@ -158,7 +158,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
         /// </summary>
         /// <param name="email">The customer email.</param>
         /// <returns></returns>
-        [HttpDelete("{emailAddress}")]
+        [HttpDelete]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete(string email)
@@ -182,7 +182,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
 
             _dataContext.Customers.Remove(customer);
 
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
 
             return NoContent();
         }
