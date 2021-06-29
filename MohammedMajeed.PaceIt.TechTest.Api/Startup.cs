@@ -28,8 +28,6 @@ namespace MohammedMajeed.PaceIt.TechTest.Api
         {
             services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase(databaseName: "PaceIt-TechTest-Database"));
 
-            DependencyInjections(services);
-
             services.AddRouting(options => options.LowercaseUrls = true);
 
             services.AddControllers();
@@ -66,11 +64,6 @@ namespace MohammedMajeed.PaceIt.TechTest.Api
             {
                 endpoints.MapControllers();
             });
-        }
-
-        public void DependencyInjections(IServiceCollection services)
-        {
-
         }
     }
 }
