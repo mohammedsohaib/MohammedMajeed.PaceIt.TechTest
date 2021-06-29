@@ -76,7 +76,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
         public async Task<IActionResult> List()
         {
             _logger.LogInformation($"{Request.Method} request recieved at {Request.Path}");
-            return Ok(_dataContext.Customers);
+            return Ok(_dataContext.Customers.ToList());
         }
 
         /// <summary>
