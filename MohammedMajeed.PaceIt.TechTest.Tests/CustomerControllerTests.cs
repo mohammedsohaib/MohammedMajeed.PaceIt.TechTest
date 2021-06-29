@@ -74,11 +74,11 @@ namespace MohammedMajeed.PaceIt.TechTest.Tests
             };
 
             var response = await customerController.Create(newModel);
-            var objectResult = response as OkObjectResult;
+            var objectResult = response as CreatedResult;
             var result = objectResult.Value;
 
-            Assert.IsInstanceOf<OkObjectResult>(objectResult);
-            Assert.AreEqual((int)HttpStatusCode.OK, objectResult.StatusCode);
+            Assert.IsInstanceOf<CreatedResult>(objectResult);
+            Assert.AreEqual((int)HttpStatusCode.Created, objectResult.StatusCode);
             Assert.AreEqual(typeof(Customer), result.GetType());
             Assert.AreEqual(newModel.FirstName, ((Customer)result).FirstName);
             Assert.AreEqual(newModel.LastName, ((Customer)result).LastName);

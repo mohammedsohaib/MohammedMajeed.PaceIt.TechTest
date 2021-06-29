@@ -32,7 +32,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [Produces("application/json", Type = typeof(Customer))]
-        [ProducesResponseType(typeof(Customer), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Customer), StatusCodes.Status201Created)]
         public async Task<IActionResult> Create(Customer newCustomerModel)
         {
             _logger.LogInformation($"{Request.Method} request recieved at {Request.Path}");
@@ -63,7 +63,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
 
             var newCustomer = _dataContext.Customers.Single(c => c.Email.ToLowerInvariant() == newCustomerModel.Email.ToLowerInvariant());
 
-            return Ok(newCustomer);
+            return Created("New customer has been created", newCustomer);
         }
 
         /// <summary>
