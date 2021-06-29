@@ -1,66 +1,54 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿
+using Newtonsoft.Json;
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace MohammedMajeed.PaceIt.TechTest.Data
 {
-    public class DataContext : DbContext
+    public class DataContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+        private string jsonFilePath { get; set; }
 
-        public DbSet<Customer> Customers { get; set; }
+        public List<Contact> Contacts { get; set; }
 
-        public static async Task Initialise(IServiceProvider serviceProvider)
+        public DataContext()
         {
-            using (var context = new DataContext(serviceProvider.GetRequiredService<DbContextOptions<DataContext>>()))
+            Contacts = new List<Contact>();
+        }
+
+        public static async Task Initialise(IServiceProvider serviceProvider, string jsonFilePath)
+        {
+            var dataContext = (DataContext)serviceProvider.GetService(typeof(DataContext));
+
+            if (File.Exists(jsonFilePath))
             {
-                if (context.Customers.Any())
+                dataContext.jsonFilePath = jsonFilePath;
+
+                if (dataContext.Contacts == null || !dataContext.Contacts.Any())
                 {
-                    return;
+                    using (StreamReader file = File.OpenText(jsonFilePath))
+                    {
+                        JsonSerializer serializer = new JsonSerializer();
+                        dataContext.Contacts = (List<Contact>)serializer.Deserialize(file, dataContext.Contacts.GetType());
+                    }
                 }
+            }
+        }
 
-                context.Customers.AddRange(
-                    new Customer
-                    {
-                        FirstName = "David",
-                        LastName = "Platt",
-                        Phone = "01913478234",
-                        Email = "david.platt@corrie.co.uk"
-                    },
-                    new Customer
-                    {
-                        FirstName = "Jason",
-                        LastName = "Grimshaw",
-                        Phone = "01913478123",
-                        Email = "jason.grimshaw@corrie.co.uk"
-                    },
-                    new Customer
-                    {
-                        FirstName = "Ken",
-                        LastName = "Barlow",
-                        Phone = "019134784929",
-                        Email = "ken.barlow@corrie.co.uk"
-                    },
-                    new Customer
-                    {
-                        FirstName = "Rita",
-                        LastName = "Sullivan",
-                        Phone = "01913478555",
-                        Email = "rita.sullivan@corrie.co.uk"
-                    },
-                    new Customer
-                    {
-                        FirstName = "Steve",
-                        LastName = "McDonald",
-                        Phone = "01913478555",
-                        Email = "steve.mcdonald@corrie.co.uk"
-                    });
-
-               await context.SaveChangesAsync();
-            };
+        public async Task SaveChangesAsync()
+        {
+            if (File.Exists(jsonFilePath))
+            {
+                using (TextWriter file = File.CreateText(jsonFilePath))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.Serialize(file, Contacts);
+                }
+            }
         }
     }
 }

@@ -4,39 +4,39 @@
         <name>MohammedMajeed.PaceIt.TechTest.Api</name>
     </assembly>
     <members>
-        <member name="M:MohammedMajeed.PaceIt.TechTest.Api.Controllers.CustomerController.Create(MohammedMajeed.PaceIt.TechTest.Data.Customer)">
+        <member name="M:MohammedMajeed.PaceIt.TechTest.Api.Controllers.AddressBookController.Create(MohammedMajeed.PaceIt.TechTest.Data.Contact)">
             <summary>
-            Creates a customer record from the new customer model.
+            Creates a new contact from the posted model.
             </summary>
-            <param name="newCustomerModel">The new customer model.</param>
+            <param name="newContact">The new contact model.</param>
             <returns></returns>
         </member>
-        <member name="M:MohammedMajeed.PaceIt.TechTest.Api.Controllers.CustomerController.List">
+        <member name="M:MohammedMajeed.PaceIt.TechTest.Api.Controllers.AddressBookController.List">
             <summary>
-            Lists all the customers records in the database.
+            Lists all the contacts.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MohammedMajeed.PaceIt.TechTest.Api.Controllers.CustomerController.Get(System.String)">
+        <member name="M:MohammedMajeed.PaceIt.TechTest.Api.Controllers.AddressBookController.Get(System.String)">
             <summary>
-            Get a customer by their email address.
+            Get a contact by their email.
             </summary>
-            <param name="email">The customer email email address.</param>
+            <param name="contactEmail">The contact email.</param>
             <returns></returns>
         </member>
-        <member name="M:MohammedMajeed.PaceIt.TechTest.Api.Controllers.CustomerController.Update(System.String,MohammedMajeed.PaceIt.TechTest.Data.Customer)">
+        <member name="M:MohammedMajeed.PaceIt.TechTest.Api.Controllers.AddressBookController.Update(System.String,MohammedMajeed.PaceIt.TechTest.Data.Contact)">
             <summary>
-            Updates the customer record.
+            Updates the contact.
             </summary>
-            <param name="email">The current customer email.</param>
-            <param name="updateModel">The updated customer model.</param>
+            <param name="contactEmail">The current contact email.</param>
+            <param name="updatedContact">The updated contact model.</param>
             <returns></returns>
         </member>
-        <member name="M:MohammedMajeed.PaceIt.TechTest.Api.Controllers.CustomerController.Delete(System.String)">
+        <member name="M:MohammedMajeed.PaceIt.TechTest.Api.Controllers.AddressBookController.Delete(System.String)">
             <summary>
-            Deletes a customer record by their email address.
+            Deletes a contact record.
             </summary>
-            <param name="email">The customer email.</param>
+            <param name="contactEmail">The current contact email.</param>
             <returns></returns>
         </member>
     </members>

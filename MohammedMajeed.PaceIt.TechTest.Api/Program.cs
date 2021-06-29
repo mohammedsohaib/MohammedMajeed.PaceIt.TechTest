@@ -4,11 +4,15 @@ using Microsoft.Extensions.Hosting;
 
 using MohammedMajeed.PaceIt.TechTest.Data;
 
+using System.IO;
+using System.Reflection;
+using System.Threading.Tasks;
+
 namespace MohammedMajeed.PaceIt.TechTest.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
 
@@ -19,7 +23,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api
                 var context = services.GetRequiredService<DataContext>();
 
                 // Call to create sample data
-                DataContext.Initialise(services);
+                await DataContext.Initialise(services, Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Contacts.json"));
             }
 
             host.Run();

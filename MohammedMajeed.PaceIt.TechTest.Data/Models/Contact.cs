@@ -4,18 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MohammedMajeed.PaceIt.TechTest.Data
 {
-    public class Customer
+    public class Contact
     {
-        /// <summary>
-        /// Gets or sets the customer identifier.
-        /// </summary>
-        /// <value>
-        /// The customer identifier.
-        /// </value>
-        [Key]
-        [JsonProperty("customer_id")]
-        public int CustomerId { get; set; }
-
         /// <summary>
         /// Gets or sets the first name.
         /// </summary>
