@@ -13,8 +13,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
         /// The first name.
         /// </value>
         [Required]
-        [JsonProperty("first_name")]
-        public string FirstName { get; set; }
+        public string first_name { get; set; }
 
         /// <summary>
         /// Gets or sets the last name.
@@ -23,8 +22,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
         /// The last name.
         /// </value>
         [Required]
-        [JsonProperty("last_name")]
-        public string LastName { get; set; }
+        public string last_name { get; set; }
 
         /// <summary>
         /// Gets or sets the phone.
@@ -32,8 +30,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
         /// <value>
         /// The phone.
         /// </value>
-        [JsonProperty("phone")]
-        public string Phone { get; set; }
+        public string phone { get; set; }
 
         /// <summary>
         /// Gets or sets the email.
@@ -42,7 +39,6 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
         /// The email.
         /// </value>
         [Required]
-        [JsonProperty("email")]
-        public string Email { get; set; }
+        public string email { get; set; }
     }
 }

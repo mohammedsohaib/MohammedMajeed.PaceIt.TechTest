@@ -43,9 +43,9 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
                 return BadRequest(JsonConvert.SerializeObject(ModelState.Values.Select(e => e.Errors).ToList()));
             }
 
-            if (_dataContext.Contacts.Any(c => c.Email.ToLowerInvariant() == newContact.Email.ToLowerInvariant()))
+            if (_dataContext.Contacts.Any(c => c.email.ToLowerInvariant() == newContact.email.ToLowerInvariant()))
             {
-                var error = $"Contact with the email: {newContact.Email} already exists!";
+                var error = $"Contact with the email: {newContact.email} already exists!";
                 _logger.LogError(error);
                 return BadRequest(error);
             }
@@ -53,15 +53,15 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
             _dataContext.Contacts.Add(
                 new Contact
                 {
-                    FirstName = newContact.FirstName,
-                    LastName = newContact.LastName,
-                    Phone = newContact.Phone,
-                    Email = newContact.Email
+                    first_name = newContact.first_name,
+                    last_name = newContact.last_name,
+                    phone = newContact.phone,
+                    email = newContact.email
                 });
 
             await _dataContext.SaveChangesAsync();
 
-            newContact = _dataContext.Contacts.Single(c => c.Email.ToLowerInvariant() == newContact.Email.ToLowerInvariant());
+            newContact = _dataContext.Contacts.Single(c => c.email.ToLowerInvariant() == newContact.email.ToLowerInvariant());
 
             return Created("A new contact has been created", newContact);
         }
@@ -98,7 +98,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
                 return BadRequest(error);
             }
 
-            var contact = _dataContext.Contacts.SingleOrDefault(c => c.Email.ToLowerInvariant() == contactEmail.ToLowerInvariant());
+            var contact = _dataContext.Contacts.SingleOrDefault(c => c.email.ToLowerInvariant() == contactEmail.ToLowerInvariant());
             if (contact == null)
             {
                 var error = $"A contact with the email: {contactEmail} cannot be found";
@@ -135,7 +135,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
                 return BadRequest(JsonConvert.SerializeObject(ModelState.Values.Select(e => e.Errors).ToList()));
             }
 
-            var contact = _dataContext.Contacts.SingleOrDefault(c => c.Email.ToLowerInvariant() == contactEmail.ToLowerInvariant());
+            var contact = _dataContext.Contacts.SingleOrDefault(c => c.email.ToLowerInvariant() == contactEmail.ToLowerInvariant());
             if (contact == null)
             {
                 var error = $"Contact with the email: {contactEmail} cannot be found";
@@ -143,10 +143,10 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
                 return NotFound(error);
             }
 
-            contact.FirstName = updatedContact.FirstName;
-            contact.LastName = updatedContact.LastName;
-            contact.Phone = updatedContact.Phone;
-            contact.Email = updatedContact.Email;
+            contact.first_name = updatedContact.first_name;
+            contact.last_name = updatedContact.last_name;
+            contact.phone = updatedContact.phone;
+            contact.email = updatedContact.email;
 
             await _dataContext.SaveChangesAsync();
 
@@ -172,7 +172,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api.Controllers
                 return BadRequest(error);
             }
 
-            var contact = _dataContext.Contacts.SingleOrDefault(c => c.Email.ToLowerInvariant() == contactEmail.ToLowerInvariant());
+            var contact = _dataContext.Contacts.SingleOrDefault(c => c.email.ToLowerInvariant() == contactEmail.ToLowerInvariant());
             if (contact == null)
             {
                 var error = $"Contact with the email: {contactEmail} cannot be found";

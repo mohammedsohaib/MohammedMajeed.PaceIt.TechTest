@@ -1,4 +1,5 @@
-﻿
+﻿using Microsoft.Extensions.DependencyInjection;
+
 using Newtonsoft.Json;
 
 using System;
@@ -22,7 +23,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Data
 
         public static async Task Initialise(IServiceProvider serviceProvider, string jsonFilePath)
         {
-            var dataContext = (DataContext)serviceProvider.GetService(typeof(DataContext));
+            var dataContext = serviceProvider.GetRequiredService<DataContext>();
 
             if (File.Exists(jsonFilePath))
             {

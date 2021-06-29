@@ -18,12 +18,7 @@ namespace MohammedMajeed.PaceIt.TechTest.Api
 
             using (var scope = host.Services.CreateScope())
             {
-                // Get the instance of DataContext in our services layer
-                var services = scope.ServiceProvider;
-                var context = services.GetRequiredService<DataContext>();
-
-                // Call to create sample data
-                await DataContext.Initialise(services, Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Contacts.json"));
+                await DataContext.Initialise(scope.ServiceProvider, Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Contacts.json"));
             }
 
             host.Run();

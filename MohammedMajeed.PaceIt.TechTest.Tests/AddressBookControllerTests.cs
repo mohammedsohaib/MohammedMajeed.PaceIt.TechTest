@@ -52,10 +52,10 @@ namespace MohammedMajeed.PaceIt.TechTest.Tests
         {
             var newContact = new Contact
             {
-                FirstName = "Unit",
-                LastName = "Tester",
-                Phone = "00000000000",
-                Email = "unit@tester"
+                first_name = "Unit",
+                last_name = "Tester",
+                phone = "00000000000",
+                email = "unit@tester"
             };
 
             var response = await addressBookController.Create(newContact);
@@ -65,10 +65,10 @@ namespace MohammedMajeed.PaceIt.TechTest.Tests
             Assert.IsInstanceOf<CreatedResult>(objectResult);
             Assert.AreEqual((int)HttpStatusCode.Created, objectResult.StatusCode);
             Assert.AreEqual(typeof(Contact), result.GetType());
-            Assert.AreEqual(newContact.FirstName, ((Contact)result).FirstName);
-            Assert.AreEqual(newContact.LastName, ((Contact)result).LastName);
-            Assert.AreEqual(newContact.Phone, ((Contact)result).Phone);
-            Assert.AreEqual(newContact.Email, ((Contact)result).Email);
+            Assert.AreEqual(newContact.first_name, ((Contact)result).first_name);
+            Assert.AreEqual(newContact.last_name, ((Contact)result).last_name);
+            Assert.AreEqual(newContact.phone, ((Contact)result).phone);
+            Assert.AreEqual(newContact.email, ((Contact)result).email);
         }
 
         [Test]
@@ -89,63 +89,63 @@ namespace MohammedMajeed.PaceIt.TechTest.Tests
         [Test]
         public async Task Get()
         {
-            var contact = TestCustomerData().Single(c => c.Email == "david.platt@corrie.co.uk");
+            var contact = TestCustomerData().Single(c => c.email == "david.platt@corrie.co.uk");
 
-            var response = await addressBookController.Get(contact.Email);
+            var response = await addressBookController.Get(contact.email);
             var objectResult = response as OkObjectResult;
             var result = objectResult.Value;
 
             Assert.IsInstanceOf<OkObjectResult>(objectResult);
             Assert.AreEqual((int)HttpStatusCode.OK, objectResult.StatusCode);
             Assert.AreEqual(typeof(Contact), result.GetType());
-            Assert.AreEqual(contact.FirstName, ((Contact)result).FirstName);
-            Assert.AreEqual(contact.LastName, ((Contact)result).LastName);
-            Assert.AreEqual(contact.Phone, ((Contact)result).Phone);
-            Assert.AreEqual(contact.Email, ((Contact)result).Email);
+            Assert.AreEqual(contact.first_name, ((Contact)result).first_name);
+            Assert.AreEqual(contact.last_name, ((Contact)result).last_name);
+            Assert.AreEqual(contact.phone, ((Contact)result).phone);
+            Assert.AreEqual(contact.email, ((Contact)result).email);
         }
 
         [Test]
         public async Task Update()
         {
-            var contact = TestCustomerData().Single(c => c.Email == "rita.sullivan@corrie.co.uk");
+            var contact = TestCustomerData().Single(c => c.email == "rita.sullivan@corrie.co.uk");
 
             var updatedContact = new Contact
             {
-                FirstName = "Unit",
-                LastName = "Tester",
-                Phone = "00000000000",
-                Email = "unit@tester"
+                first_name = "Unit",
+                last_name = "Tester",
+                phone = "00000000000",
+                email = "unit@tester"
             };
 
-            var response = await addressBookController.Update(contact.Email, updatedContact);
+            var response = await addressBookController.Update(contact.email, updatedContact);
             var objectResult = response as OkObjectResult;
             var result = objectResult.Value;
 
             Assert.IsInstanceOf<OkObjectResult>(objectResult);
             Assert.AreEqual((int)HttpStatusCode.OK, objectResult.StatusCode);
             Assert.AreEqual(typeof(Contact), result.GetType());
-            Assert.AreNotEqual(contact.FirstName, ((Contact)result).FirstName);
-            Assert.AreEqual(updatedContact.FirstName, ((Contact)result).FirstName);
-            Assert.AreNotEqual(contact.LastName, ((Contact)result).LastName);
-            Assert.AreEqual(updatedContact.LastName, ((Contact)result).LastName);
-            Assert.AreNotEqual(contact.Phone, ((Contact)result).Phone);
-            Assert.AreEqual(updatedContact.Phone, ((Contact)result).Phone);
-            Assert.AreNotEqual(contact.Email, ((Contact)result).Email);
-            Assert.AreEqual(updatedContact.Email, ((Contact)result).Email);
+            Assert.AreNotEqual(contact.first_name, ((Contact)result).first_name);
+            Assert.AreEqual(updatedContact.first_name, ((Contact)result).first_name);
+            Assert.AreNotEqual(contact.last_name, ((Contact)result).last_name);
+            Assert.AreEqual(updatedContact.last_name, ((Contact)result).last_name);
+            Assert.AreNotEqual(contact.phone, ((Contact)result).phone);
+            Assert.AreEqual(updatedContact.phone, ((Contact)result).phone);
+            Assert.AreNotEqual(contact.email, ((Contact)result).email);
+            Assert.AreEqual(updatedContact.email, ((Contact)result).email);
         }
 
         [Test]
         public async Task Delete()
         {
-            var contact = TestCustomerData().Single(c => c.Email == "steve.mcdonald@corrie.co.uk");
+            var contact = TestCustomerData().Single(c => c.email == "steve.mcdonald@corrie.co.uk");
 
-            var response = await addressBookController.Delete(contact.Email);
+            var response = await addressBookController.Delete(contact.email);
             var noContentResult = response as NoContentResult;
 
             Assert.IsInstanceOf<NoContentResult>(noContentResult);
             Assert.AreEqual((int)HttpStatusCode.NoContent, noContentResult.StatusCode);
 
-            response = await addressBookController.Get(contact.Email);
+            response = await addressBookController.Get(contact.email);
             var notFoundObjectResult = response as NotFoundObjectResult;
 
             Assert.IsInstanceOf<NotFoundObjectResult>(notFoundObjectResult);
@@ -160,39 +160,37 @@ namespace MohammedMajeed.PaceIt.TechTest.Tests
             {
                 new Contact
                 {
-                    FirstName = "David",
-                    LastName = "Platt",
-                    Phone = "01913478234",
-                    Email = "david.platt@corrie.co.uk"
+                    first_name = "David",
+                    last_name = "Platt",
+                    phone = "01913478234",
+                    email = "david.platt@corrie.co.uk"
                 },
                 new Contact
                 {
-                    FirstName = "Jason",
-                    LastName = "Grimshaw",
-                    Phone = "01913478123",
-                    Email = "jason.grimshaw@corrie.co.uk"
+                    first_name = "Jason",
+                    last_name = "Grimshaw",
+                    phone = "01913478123",
+                    email = "jason.grimshaw@corrie.co.uk"
                 },
                 new Contact
                 {
-                    FirstName = "Ken",
-                    LastName = "Barlow",
-                    Phone = "019134784929",
-                    Email = "ken.barlow@corrie.co.uk"
+                    first_name = "Ken",
+                    last_name = "Barlow",
+                    phone = "019134784929",
+                    email = "ken.barlow@corrie.co.uk"
                 },
                 new Contact
                 {
-                    FirstName = "Rita",
-                    LastName = "Sullivan",
-                    Phone = "01913478555",
-                    Email = "rita.sullivan@corrie.co.uk"
-                },
+                    first_name = "Rita", 
+                    last_name = "Sullivan", 
+                    phone = "01913478555", 
+                    email = "rita.sullivan@corrie.co.uk"},
                 new Contact
                 {
-                    FirstName = "Steve",
-                    LastName = "McDonald",
-                    Phone = "01913478555",
-                    Email = "steve.mcdonald@corrie.co.uk"
-                }
+                    first_name = "Steve", 
+                    last_name = "McDonald", 
+                    phone = "01913478555", 
+                    email = "steve.mcdonald@corrie.co.uk"}
             };
         }
 
